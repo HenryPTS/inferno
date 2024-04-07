@@ -4,13 +4,26 @@
     <title>Dante's Inferno</title>
     <script>
       window.chapter_data={{{chapter_str}}};
-      window.addEventListener('click', console.log);
+      window.addEventListener('click', function(ev) {
+        if (ev.target.tagName !== 'P') {
+          return;
+        }
+        if (ev.target.lang === 'it') {
+          const index = Number.parseInt(ev.target.id);
+          ev.target.lang = 'en';
+          ev.target.innerText = window.chapter_data.en[index].join('\n');
+        } else {
+          const index = Number.parseInt(ev.target.id);
+          ev.target.lang = 'it';
+          ev.target.innerText = window.chapter_data.it[index].join('\n');
+        }
+      });
     </script>
   </head>
   <body>
     <main style="display: flex;flex-direction: column;width: fit-content; margin: auto;">
       {{#each chapter.it}}
-      <p id="{{@index}}" style="cursor: pointer;">
+      <p id="{{@index}}" style="cursor: pointer; align-self: center;" lang="it">
         {{#each this}}{{this}}<br>{{/each}}
       </p>
       {{/each}}
