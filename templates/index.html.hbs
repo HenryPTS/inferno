@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dante's Inferno</title>
+    <script>
+      window.chapter_data={{{chapter_str}}};
+      window.addEventListener('click', console.log);
+    </script>
+  </head>
+  <body>
+    <main style="display: flex;flex-direction: column;width: fit-content; margin: auto;">
+      {{#each chapter.it}}
+      <p id="{{@index}}" style="cursor: pointer;">
+        {{#each this}}{{this}}<br>{{/each}}
+      </p>
+      {{/each}}
+    </main>
+  </body>
+</html>
