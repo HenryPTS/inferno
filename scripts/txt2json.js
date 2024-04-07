@@ -17,8 +17,6 @@ function readCanto(lang = "en", num = 1) {
   return cantoArr;
 }
 
-const json = [];
-
 for (let i = 1; i < 35; i++) {
   const it = readCanto("it", i);
   const en = readCanto("en", i);
@@ -26,5 +24,4 @@ for (let i = 1; i < 35; i++) {
     `json/chapters/${i}.json`,
     JSON.stringify({ it, en }, undefined, 0)
   );
-  json.push({ it, en });
 }
