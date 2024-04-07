@@ -3,7 +3,8 @@
   <head>
     <title>Dante's Inferno</title>
     <script>
-      window.chapter_data={{{chapter_str}}};
+      const chapter_data={{{chapter_str}}};
+      let to;
       window.addEventListener('click', function(ev) {
         if (ev.target.tagName !== 'P') {
           return;
@@ -11,8 +12,15 @@
         let nuLang = ev.target.lang === 'it' ? 'en' : 'it';
         const index = Number.parseInt(ev.target.id);
         ev.target.lang = nuLang;
-        ev.target.innerText = window.chapter_data[nuLang][index].join('\n');
+        ev.target.innerText = chapter_data[nuLang][index].join('\n');
       });
+      document.addEventListener('scroll', function(ev){
+        clearTimeout(to);
+        to = setTimeout(function() {
+          console.log('timeout expired');
+          clearTimeout(to);
+        }, 1000);
+      })
     </script>
   </head>
   <body>
