@@ -8,22 +8,17 @@
         if (ev.target.tagName !== 'P') {
           return;
         }
-        if (ev.target.lang === 'it') {
-          const index = Number.parseInt(ev.target.id);
-          ev.target.lang = 'en';
-          ev.target.innerText = window.chapter_data.en[index].join('\n');
-        } else {
-          const index = Number.parseInt(ev.target.id);
-          ev.target.lang = 'it';
-          ev.target.innerText = window.chapter_data.it[index].join('\n');
-        }
+        let nuLang = ev.target.lang === 'it' ? 'en' : 'it';
+        const index = Number.parseInt(ev.target.id);
+        ev.target.lang = nuLang;
+        ev.target.innerText = window.chapter_data[nuLang][index].join('\n');
       });
     </script>
   </head>
   <body>
-    <main style="display: flex;flex-direction: column;width: fit-content; margin: auto;">
+    <main style="display: flex;flex-direction: column;width: 44%; margin: auto;">
       {{#each chapter.it}}
-      <p id="{{@index}}" style="cursor: pointer; align-self: center;" lang="it">
+      <p id="{{@index}}" style="cursor: pointer; align-self: start;" lang="it">
         {{#each this}}{{this}}<br>{{/each}}
       </p>
       {{/each}}
