@@ -2,7 +2,10 @@ use rocket::{get, launch, response::Redirect, routes, uri};
 use rocket_dyn_templates::{context, Template};
 use serde::{Deserialize, Serialize};
 use std::fs;
-
+// TODO asset loading
+// TODO next/previous page
+// TODO toc
+// TODO fix layout?
 #[derive(Serialize, Deserialize, Debug)]
 struct Chapter {
     it: Vec<Vec<String>>,
@@ -14,10 +17,7 @@ fn chapter(chapter: u8) -> Template {
     let path = format!("./json/chapters/{}.json", chapter);
     let chapter_str = fs::read_to_string(path).expect("unable to read file");
     let chapter: Chapter = serde_json::from_str(&chapter_str).expect("json was not well formatted");
-    Template::render(
-        "index",
-        context! { chapter: chapter, chapter_str: chapter_str },
-    )
+    Template::render("index", context! { chapter, chapter_str })
 }
 
 #[get("/")]

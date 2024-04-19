@@ -24,9 +24,9 @@
     </script>
   </head>
   <body>
-    <main style="display: flex;flex-direction: column;width: 44%; margin: auto;">
+    <main style="display:flex;flex-direction:column;align-items:center;">
       {{#each chapter.it}}
-      <p id="{{@index}}" style="cursor: pointer; align-self: start;" lang="it">
+      <p id="{{@index}}" style="cursor: pointer;" lang="it">
         {{#each this}}{{this}}<br>{{/each}}
       </p>
       {{/each}}
